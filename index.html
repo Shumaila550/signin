@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Animated Auth Page</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+/* Animated gradient background */
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(-45deg,#1abc9c,#3498db,#8e44ad,#ff6b6b);
+    background-size:400% 400%;
+    animation:bgMove 10s ease infinite;
+}
+
+@keyframes bgMove{
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+
+/* Card container */
+.container{
+    width:360px;
+    padding:40px;
+    background:rgba(255,255,255,0.1);
+    border-radius:18px;
+    backdrop-filter:blur(15px);
+    box-shadow:0 20px 40px rgba(0,0,0,0.2);
+    color:white;
+    overflow:hidden;
+    position:relative;
+}
+
+/* form animation wrapper */
+.forms{
+    display:flex;
+    width:200%;
+    transition:0.6s ease;
+}
+
+.container.active .forms{
+    transform:translateX(-50%);
+}
+
+/* form styling */
+form{
+    width:50%;
+    display:flex;
+    flex-direction:column;
+}
+
+h2{
+    text-align:center;
+    margin-bottom:20px;
+}
+
+input{
+    padding:12px;
+    margin:8px 0;
+    border:none;
+    border-radius:8px;
+    outline:none;
+    background:rgba(255,255,255,0.2);
+    color:white;
+}
+
+input::placeholder{
+    color:#eee;
+}
+
+button{
+    margin-top:15px;
+    padding:12px;
+    border:none;
+    border-radius:8px;
+    background:#1abc9c;
+    color:white;
+    font-weight:600;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    background:#16a085;
+}
+
+/* switch text */
+.switch{
+    text-align:center;
+    margin-top:15px;
+    font-size:14px;
+}
+
+.switch span{
+    color:#1abc9c;
+    cursor:pointer;
+    font-weight:600;
+}
+
+/* floating circles decoration */
+.circle{
+    position:absolute;
+    border-radius:50%;
+    background:rgba(255,255,255,0.15);
+    animation:float 6s ease-in-out infinite;
+}
+
+.circle.one{
+    width:120px;height:120px;
+    top:-40px;left:-40px;
+}
+
+.circle.two{
+    width:90px;height:90px;
+    bottom:-30px;right:-30px;
+    animation-delay:2s;
+}
+
+@keyframes float{
+    0%,100%{transform:translateY(0)}
+    50%{transform:translateY(-15px)}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container" id="box">
+    <div class="circle one"></div>
+    <div class="circle two"></div>
+
+    <div class="forms">
+
+        <!-- LOGIN -->
+        <form>
+            <h2>Welcome Back</h2>
+            <input type="email" placeholder="Email">
+            <input type="password" placeholder="Password">
+            <button>Login</button>
+            <div class="switch">
+                Don't have an account? 
+                <span onclick="toggle()">Sign Up</span>
+            </div>
+        </form>
+
+        <!-- SIGN UP -->
+        <form>
+            <h2>Create Account</h2>
+            <input type="text" placeholder="Full Name">
+            <input type="email" placeholder="Email">
+            <input type="password" placeholder="Password">
+            <button>Sign Up</button>
+            <div class="switch">
+                Already have an account? 
+                <span onclick="toggle()">Login</span>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+<script>
+function toggle(){
+    document.getElementById("box").classList.toggle("active");
+}
+</script>
+
+</body>
+</html>
