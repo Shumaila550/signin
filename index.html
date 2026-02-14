@@ -3,170 +3,180 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Animated Auth Page</title>
+<title>Professional Auth UI</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:'Poppins',sans-serif;
+    font-family:'Inter',sans-serif;
 }
 
-/* Animated gradient background */
+/* ===== Elegant animated background ===== */
 body{
     height:100vh;
     display:flex;
     justify-content:center;
     align-items:center;
-    background:linear-gradient(-45deg,#1abc9c,#3498db,#8e44ad,#ff6b6b);
-    background-size:400% 400%;
-    animation:bgMove 10s ease infinite;
-}
-
-@keyframes bgMove{
-    0%{background-position:0% 50%}
-    50%{background-position:100% 50%}
-    100%{background-position:0% 50%}
-}
-
-/* Card container */
-.container{
-    width:360px;
-    padding:40px;
-    background:rgba(255,255,255,0.1);
-    border-radius:18px;
-    backdrop-filter:blur(15px);
-    box-shadow:0 20px 40px rgba(0,0,0,0.2);
-    color:white;
+    background:#0f172a;
     overflow:hidden;
-    position:relative;
+    color:#0f172a;
 }
 
-/* form animation wrapper */
+/* subtle animated mesh */
+body::before{
+    content:"";
+    position:absolute;
+    width:140%;
+    height:140%;
+    background:
+        radial-gradient(circle at 20% 30%, #6366f1 0%, transparent 40%),
+        radial-gradient(circle at 80% 70%, #22c55e 0%, transparent 40%),
+        radial-gradient(circle at 50% 90%, #06b6d4 0%, transparent 40%);
+    opacity:.15;
+    animation:moveBg 18s linear infinite alternate;
+}
+
+@keyframes moveBg{
+    from{transform:translate(-5%,-5%)}
+    to{transform:translate(5%,5%)}
+}
+
+/* ===== Card ===== */
+.card{
+    width:380px;
+    background:white;
+    border-radius:18px;
+    padding:40px;
+    box-shadow:0 25px 60px rgba(0,0,0,0.35);
+    position:relative;
+    z-index:2;
+}
+
+/* form slider */
 .forms{
     display:flex;
     width:200%;
-    transition:0.6s ease;
+    transition:.5s ease;
 }
 
-.container.active .forms{
+.card.active .forms{
     transform:translateX(-50%);
 }
 
-/* form styling */
 form{
     width:50%;
-    display:flex;
-    flex-direction:column;
 }
 
+/* typography */
 h2{
-    text-align:center;
-    margin-bottom:20px;
-}
-
-input{
-    padding:12px;
-    margin:8px 0;
-    border:none;
-    border-radius:8px;
-    outline:none;
-    background:rgba(255,255,255,0.2);
-    color:white;
-}
-
-input::placeholder{
-    color:#eee;
-}
-
-button{
-    margin-top:15px;
-    padding:12px;
-    border:none;
-    border-radius:8px;
-    background:#1abc9c;
-    color:white;
+    margin-bottom:8px;
     font-weight:600;
-    cursor:pointer;
-    transition:.3s;
+    color:#0f172a;
 }
 
-button:hover{
-    background:#16a085;
+.subtitle{
+    font-size:14px;
+    color:#64748b;
+    margin-bottom:22px;
 }
 
-/* switch text */
-.switch{
-    text-align:center;
-    margin-top:15px;
+/* inputs */
+.input{
+    width:100%;
+    padding:14px;
+    border:1px solid #e2e8f0;
+    border-radius:10px;
+    margin-bottom:14px;
+    transition:.25s;
     font-size:14px;
 }
 
+.input:focus{
+    border-color:#6366f1;
+    outline:none;
+    box-shadow:0 0 0 3px rgba(99,102,241,.15);
+}
+
+/* button */
+.btn{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:10px;
+    background:#6366f1;
+    color:white;
+    font-weight:600;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.btn:hover{
+    background:#4f46e5;
+}
+
+/* switch link */
+.switch{
+    text-align:center;
+    margin-top:16px;
+    font-size:14px;
+    color:#64748b;
+}
+
 .switch span{
-    color:#1abc9c;
+    color:#6366f1;
     cursor:pointer;
     font-weight:600;
 }
 
-/* floating circles decoration */
-.circle{
-    position:absolute;
-    border-radius:50%;
-    background:rgba(255,255,255,0.15);
-    animation:float 6s ease-in-out infinite;
+/* small entrance animation */
+.card{
+    animation:fadeUp .6s ease;
 }
 
-.circle.one{
-    width:120px;height:120px;
-    top:-40px;left:-40px;
-}
-
-.circle.two{
-    width:90px;height:90px;
-    bottom:-30px;right:-30px;
-    animation-delay:2s;
-}
-
-@keyframes float{
-    0%,100%{transform:translateY(0)}
-    50%{transform:translateY(-15px)}
+@keyframes fadeUp{
+    from{opacity:0; transform:translateY(20px)}
+    to{opacity:1; transform:translateY(0)}
 }
 </style>
 </head>
 
 <body>
 
-<div class="container" id="box">
-    <div class="circle one"></div>
-    <div class="circle two"></div>
-
+<div class="card" id="card">
     <div class="forms">
 
         <!-- LOGIN -->
         <form>
-            <h2>Welcome Back</h2>
-            <input type="email" placeholder="Email">
-            <input type="password" placeholder="Password">
-            <button>Login</button>
+            <h2>Sign in</h2>
+            <div class="subtitle">Access your account</div>
+
+            <input class="input" type="email" placeholder="Email">
+            <input class="input" type="password" placeholder="Password">
+
+            <button class="btn">Login</button>
+
             <div class="switch">
-                Don't have an account? 
-                <span onclick="toggle()">Sign Up</span>
+                New here? <span onclick="toggle()">Create account</span>
             </div>
         </form>
 
-        <!-- SIGN UP -->
+        <!-- SIGNUP -->
         <form>
-            <h2>Create Account</h2>
-            <input type="text" placeholder="Full Name">
-            <input type="email" placeholder="Email">
-            <input type="password" placeholder="Password">
-            <button>Sign Up</button>
+            <h2>Create account</h2>
+            <div class="subtitle">Start your journey</div>
+
+            <input class="input" type="text" placeholder="Full name">
+            <input class="input" type="email" placeholder="Email">
+            <input class="input" type="password" placeholder="Password">
+
+            <button class="btn">Sign Up</button>
+
             <div class="switch">
-                Already have an account? 
-                <span onclick="toggle()">Login</span>
+                Already registered? <span onclick="toggle()">Sign in</span>
             </div>
         </form>
 
@@ -175,7 +185,7 @@ button:hover{
 
 <script>
 function toggle(){
-    document.getElementById("box").classList.toggle("active");
+    document.getElementById("card").classList.toggle("active");
 }
 </script>
 
